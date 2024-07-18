@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block title %} Register {% endblock %}
+
+{% block body %}
+<div class="container">
+    <h3>Register Page</h3>
+    <form method="post">
+        <div class="form-group">
+            <label for="first_name">{{ form.first_name.label }}</label>
+            {{ form.first_name(class="form-control") }}
+            {% for error in form.first_name.errors %}
+                <div class="text-danger">{{ error }}</div>
+            {% endfor %}
+        </div>
+        <div class="form-group">
+            <label for="last_name">{{form.last_name.label }}</label>
+            {{ form.last_name(class="form-control")}}
+            {%for error in form.last_name.errors %}
+              <div class="text-danger">{{ error }}</div>
+            {% endfor %}
+        </div>
+        <div class="form-group">
+            <label for="phone_number">{{form.phone_number.label }}</label>
+            {{ form.phone_number(class="form-control")}}
+            {%for error in form.phone_number.errors %}
+              <div class="text-danger">{{ error }}</div>
+            {% endfor %}
+        </div>
+        <div class="form-group">
+            <label for="email">{{form.email.label }}</label>
+            {{ form.email(class="form-control")}}
+            {%for error in form.email.errors %}
+              <div class="text-danger">{{ error }}</div>
+            {% endfor %}
+        </div>
+        <div class="form-group">
+            <label for="card_number">{{form.card_number.label }}</label>
+            {{ form.card_number(class="form-control")}}
+            {%for error in form.card_number.errors %}
+              <div class="text-danger">{{ error }}</div>
+            {% endfor %}
+        </div>
+        <div class="form-group">
+            <label for="card_balance">{{form.card_balance.label }}</label>
+            {{ form.card_balance(class="form-control")}}
+            {%for error in form.card_balance.errors %}
+              <div class="text-danger">{{ error }}</div>
+            {% endfor %}
+        </div>
+        <div class="form-group">
+            <label for="password">{{form.password.label }}</label>
+            {{ form.password(class="form-control")}}
+            {%for error in form.password.errors %}
+              <div class="text-danger">{{ error }}</div>
+            {% endfor %}
+        </div>
+        <div class="form-group">
+            <label for="confirm_password">{{form.confirm_password.label }}</label>
+            {{ form.confirm_password(class="form-control")}}
+            {%for error in form.confirm_password.errors %}
+              <div class="text-danger">{{ error }}</div>
+            {% endfor %}
+        </div>
+        <div class="form-group">
+            {{ form.submit(class="btn btn-primary") }}
+        </div>
+        {{ form.hidden_tag() }}
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %} Transfer Money {% endblock %}
+
+{% block body %}
+<div class="container">
+    <h3>Transfer Money</h3>
+    <form method="post">
+        <div class="form-group">
+            <label for="recipient_card">{{ transfer.recipient_card.label }}</label>
+            {{ transfer.recipient_card(class="form-control") }}
+            {% for error in transfer.recipient_card.errors %}
+                <div class="text-danger">{{ error }}</div>
+            {% endfor %}
+        </div>
+        <div class="form-group">
+            <label for="balance">{{ transfer.balance.label }}</label>
+            {{ transfer.balance(class="form-control") }}
+            {% for error in transfer.balance.errors %}
+                <div class="text-danger">{{ error }}</div>
+            {% endfor %}
+        </div>
+        {% if recipient %}
+        <div class="form-group">
+            <p>Recipient: {{ recipient.first_name }} {{ recipient.last_name }}</p>
+            <input type="hidden" name="confirm_transfer" value="true">
+        </div>
+        {% endif %}
+        <div class="form-group">
+            {{ transfer.submit(class="btn btn-primary") }}
+            <a href="{{ url_for('user_menu') }}" class="btn btn-secondary">Exit</a>
+        </div>
+        {{ transfer.hidden_tag() }}
+    </form>
+</div>
+{% endblock %}

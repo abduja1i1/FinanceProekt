@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %} User_menu {% endblock %}
+
+{% block body %}
+ <div class="container">
+     <nav class="navbar navbar-expand-lg navbar-light bg-light">
+         <div class="navbar-nav">
+             <a class="nav-item nav-link" href="{{ url_for('show_balance') }}">Show_balance</a>
+             <a class="nav-item nav-link" href="{{ url_for('add_balance') }}">Add_balance</a>
+             <a class="nav-item nav-link" href="{{ url_for('transfer_money') }}">Transfer_money</a>
+             <a class="nav-item nav-link" href="{{ url_for('transfer_history') }}">Transfer_history</a>
+             <a class="nav-item nav-link" href="{{ url_for('logout') }}">Log_out</a>
+             <a class="nav-item nav-link" href="{{ url_for('delete') }}">User_delete</a>
+         </div>
+     </nav>
+ </div>
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %} Transfer History {% endblock %}
+
+{% block body %}
+<form method="post">
+    <div style="text-align: center">
+        <h3>Start Time</h3>
+        <input type="date" name="start_date" style="background:aliceblue; width: 300px; height: 60px; font-size: 20px" required>
+        <br><br>
+        <h3>End Time</h3>
+        <input type="date" name="end_date" style="background:aliceblue; width: 300px; height: 60px; font-size: 20px" required>
+        <br><br>
+        <input type="submit" value="Show History" style="font-size: 20px; padding: 10px 20px;">
+         <button><a href="{{ url_for('user_menu') }}" class="btn btn-secondary" style="width: 100px;height: 5 0px">Exit</a></button>
+    </div>
+</form>
+
+{% if kirim or chiqim %}
+    {% if kirim %}
+        <h4 style="color: green;">Kirim</h4>
+        <ul>
+            {% for transfer in kirim %}
+                <li>Amount: {{ transfer.balance }} - From: {{ transfer.sender.first_name }} {{ transfer.sender.last_name }} - Date: {{ transfer.transfer_time.strftime('%m/%d/%Y') }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    {% if chiqim %}
+        <h4 style="color: red;">Chiqim</h4>
+        <ul>
+            {% for transfer in chiqim %}
+                <li>Amount: {{ transfer.balance }} - To: {{ transfer.recipient.first_name }} {{ transfer.recipient.last_name }} - Date: {{ transfer.transfer_time.strftime('%m/%d/%Y') }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% else %}
+    {% if request.method == 'POST' %}
+        <p>No transfers found for the selected period. Please check the dates and try again.</p>
+    {% endif %}
+{% endif %}
+{% endblock %}
